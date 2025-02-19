@@ -22,7 +22,14 @@
  - Reading the Query and Params in routes.
  - Reading the dynamic routes.
 
- 
+ ### Middleware & error Handling
+ - Multiple Route Handlers - Play with the code
+ - next()
+ - Next function and errors along with res.send()
+ - app.use("/route", rH, rH2, rH3, rh$);
+
+
+
 
 
 
