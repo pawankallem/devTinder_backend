@@ -35,6 +35,17 @@
  - Wildcard error handling with (throw new error())
 
 
+ ### Database, Schema & Models | Mongoose
+ - Create a free cluster on MongoDB official website ( Mongo Atlas)
+ - Install mongoose library
+ - Connect your application to the Databse "Connection-url"/devTinder
+ - Call the connectDb function and connect to database before starting application on node or express.
+ - Create userSchema and User Model
+ - Create Post /signup API to add data to database
+ - Push some documents using API calls from postman
+ - Error Handling using try, catch
+
+
 
 
 
