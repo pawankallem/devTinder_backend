@@ -11,12 +11,23 @@ app.post("/admin", (req, res) =>
   res.send("admin post request authenticated sucessfully")
 );
 
-app.get("/user", userAuth, (req, res) =>
-  res.send("User authentication completed for get method")
-);
-app.post("/user", (req, res) =>
-  res.send("without authentication user post requrest")
-);
+app.get("/user", userAuth, (req, res) => {
+  try {
+    // throw new error("error here");
+    res.send("User authentication completed for get method");
+  } catch (error) {
+    res.status(500).send("single route error handling");
+  }
+});
+app.post("/user", (req, res) => {
+  // throw new error("global error handling");
+  res.send("without authentication user post requrest");
+});
+
+// Wild card error handling
+app.use("/", (err, req, res, next) => {
+  res.status(500).send("Global: Something went wrong");
+});
 
 app.listen(PORT, () =>
   console.log(
