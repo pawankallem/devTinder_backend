@@ -46,6 +46,12 @@
  - Error Handling using try, catch
 
 
+ - ### Diving into the APIs
+ - Javascript (vs) JSON ( difference )
+ - Add the express.json() middleware to your app
+ - Make your signup API dynamic to recive data from the end user.
+
+
 
 
 

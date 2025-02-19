@@ -6,16 +6,14 @@ const { adminAuth, userAuth } = require("./Middleware/auth");
 const app = express();
 const PORT = 5005;
 
+// Middleware to READ the JSON data.
+app.use(express.json())
+
 app.post("/signup", async (req, res) => {
-  const newUser = {
-    firstName: "b",
-    lastName: "c",
-    email: "c@abc.com",
-    password: "abcd",
-  };
+  console.log("request body : ", req.body);
 
   // Below line creating a INSTANCE of user model from the schema
-  const user = new User(newUser);
+  const user = new User(req.body);
   try {
     await user.save();
     res.send("User Created Sucessfully  :-)   ")
