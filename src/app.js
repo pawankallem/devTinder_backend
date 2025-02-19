@@ -1,30 +1,21 @@
 const express = require("express");
+const { adminAuth, userAuth } = require("./Middleware/auth");
 
 const app = express();
 const PORT = 5005;
 
-app.use(
-  "/user",
-  (req, res, next) => {
-    console.log("1st handler");
-    next();
-    res.send("1st request");
-  },
-  (req, res, next) => {
-    console.log("2nd handle");
-    next();
-    // res.send("2nd request")
-  },
-  [
-    (req, res, next) => {
-      console.log("3rd handler");
-      next();
-    },
-    (req, res, next) => {
-      console.log("4th handler");
-      // next()
-    },
-  ]
+app.use("/admin", adminAuth);
+
+app.get("/admin", (req, res) => res.send("admin get request authenticated"));
+app.post("/admin", (req, res) =>
+  res.send("admin post request authenticated sucessfully")
+);
+
+app.get("/user", userAuth, (req, res) =>
+  res.send("User authentication completed for get method")
+);
+app.post("/user", (req, res) =>
+  res.send("without authentication user post requrest")
 );
 
 app.listen(PORT, () =>
