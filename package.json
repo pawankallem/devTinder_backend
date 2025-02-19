@@ -1,0 +1,19 @@
+{
+  "name": "devtinder_backend",
+  "version": "1.0.0",
+  "description": "Where developer connect with each other and shere their knowledge",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js"
+  },
+  "keywords": [
+    "Nodejs",
+    "Javascript"
+  ],
+  "author": "Pavan Kallem",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}

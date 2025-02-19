@@ -1,12 +1,14 @@
  - Create a Repository
  - Initialise the Repository
- - Learn about ( node_modules, package.json, package-lock.json )
  - Install express
  - create a server
  - listen to port 5005
- - write request handlers for [ "/", "/test", "/hello" ]
  - Install nodemon and update the script inside package.json
+ - write request handlers for [ "/", "/test", "/hello" ]
+
+ - Learn about ( node_modules, package.json, package-lock.json )
  - What are dependencies ['Ans':]
  - what is the use of ['-g'] in npm install
  - Difference between caret and tilde ['(^)vs(~)']
-    
+ - why there is ['.bin'] file in node_modules
+ - purpose of ['.gitignore'] file
