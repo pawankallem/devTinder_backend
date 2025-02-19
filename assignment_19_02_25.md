@@ -1,3 +1,5 @@
+ 
+ ### Express 
  - Create a Repository
  - Initialise the Repository
  - Install express
@@ -7,8 +9,23 @@
  - write request handlers for [ "/", "/test", "/hello" ]
 
  - Learn about ( node_modules, package.json, package-lock.json )
- - What are dependencies ['Ans':]
- - what is the use of ['-g'] in npm install
- - Difference between caret and tilde ['(^)vs(~)']
  - why there is ['.bin'] file in node_modules
+ - what is the use of ['-g'] in npm install
+ - What are dependencies ['Ans':]
+ - explain this version structure ["express": "^4.21.2"]?
+ - Difference between caret and tilde ['(^)vs(~)']
  - purpose of ['.gitignore'] file
+
+ ### Routing & Routes Extensions
+ - Explore routing and use of ``` ?, +, (), *  ``` in routes endpoint.
+ - use of regex in routes ``` /a/ and /.*fly$/ ```
+ - Reading the Query and Params in routes.
+ - Reading the dynamic routes.
+
+ 
+
+
+
+
+
+

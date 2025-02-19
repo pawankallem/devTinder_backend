@@ -3,12 +3,11 @@ const express = require("express");
 const app = express();
 const PORT = 5005;
 
+app.get("/user",(req,res) => res.send("getting user information!"));
+app.post("/user",(req,res) => res.send("stored user info sucessfully!!!!!"))
+app.delete("/user",(req,res) => res.send("user deleted usecessfully"))
 
-app.use("/test", (req, res) => res.send("Tesing the server"));
-
-app.use("/hello", (req, res) => res.send("Hello world of Nodejs"));
-
-app.use("", (req, res) => {
+app.use("/", (req, res) => {
   res.send("Welcome to Home page!"); 
 });
 
