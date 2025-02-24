@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
-const validator = require("validator")
+const validator = require("validator");
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
 
 const { Schema } = mongoose;
 
@@ -25,10 +27,10 @@ const userSchema = new Schema(
       trim: true,
       lowercase: true,
       validate(inputEmail) {
-        if(!validator.isEmail(inputEmail)) {
-          throw new Error("Please enter valid Email")
+        if (!validator.isEmail(inputEmail)) {
+          throw new Error("Please enter valid Email");
         }
-      }
+      },
       // match: "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$",
     },
     password: {
@@ -36,10 +38,10 @@ const userSchema = new Schema(
       required: true,
       minLength: 4,
       validate(inputPassword) {
-        if(!validator.isStrongPassword(inputPassword)) {
-          throw new Error("Your password must be strong!!")
+        if (!validator.isStrongPassword(inputPassword)) {
+          throw new Error("Your password must be strong!!");
         }
-      }
+      },
     },
     age: {
       type: Number,
@@ -54,16 +56,40 @@ const userSchema = new Schema(
       type: String,
       required: true,
       validate(inputPhotoUrl) {
-        if(!inputPhotoUrl) {
-          throw new Error("Please enter Profile URL")
+        if (!inputPhotoUrl) {
+          throw new Error("Please enter Profile URL");
         }
-      }
-    }
+      },
+    },
   },
   {
     timestamps: true,
   }
 );
+
+userSchema.methods.getJwt = async function () {
+  const user = this;
+
+  const token = await jwt.sign({ _id: user._id }, "pavan", { expiresIn: "1h" });
+
+  return token;
+};
+
+userSchema.methods.compareAuthPasswords = async function (inputPasswordByUser) {
+
+  console.log("helloooooooooooooooooo")
+  const user = this;
+  const passwordHash = user.password;
+
+  const isPasswordValid = await bcrypt.compare(
+    inputPasswordByUser,
+    passwordHash
+  );
+  console.log("validated password : ", isPasswordValid);
+  return isPasswordValid;
+
+  
+};
 
 // always start with Capital letter while defining Model
 const User = mongoose.model("User", userSchema);
