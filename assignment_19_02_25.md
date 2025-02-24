@@ -69,8 +69,6 @@
  - Add timestamps to the userSchema
  - Add API level validation on Patch request and signup post api
  - Data Sanitizing Add API validation for each field
-
- <!-- ******************************************** -->
  - Install validator
  - Explore validator library function and Use validator funcs for password, email, photo URL.
  - NEVER TRUST req.body
@@ -82,13 +80,15 @@
  - Create login API
  - Compare passwords and throw errors if email or password is invalid
 
+
  - ### Authentication, JWT & Cookies
  - install cookie-parser
  - just send a dummy cookie to user
- - create GET /profile API and check if you get hte cooked back
+ - create GET /profile API and check if you get the cookie back
  - install jsonwebtoken
  - In login API, after email and password validation, create a JWT token and send it to user Cookie.
  - read the cookies inside your profile API and find the logged in user
+ <!-- ******************************************** -->
  - userAuth Middleware 
  - Add the userAuth middleware in profile API and a new send ConnectionRequest API
  - Set the expiry of JWT token and cookieds to 7 days

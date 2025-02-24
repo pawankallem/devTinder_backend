@@ -2,48 +2,78 @@ const express = require("express");
 const connectDB = require("./config/database");
 const User = require("./Models/user");
 const { adminAuth, userAuth } = require("./Middleware/auth");
+const { validateSignupData } = require("./helpers/validation");
+const bcrypt = require("bcrypt");
+const cookieParser = require("cookie-parser");
+const jwt = require("jsonwebtoken");
 
 const app = express();
 const PORT = 5005;
 
 // Middleware to READ the JSON data.
 app.use(express.json());
+app.use(cookieParser());
 
 app.post("/signup", async (req, res) => {
-  console.log("request body : ", req.body);
-
   try {
-  const { firstName, lastName, email, password, age, photoUrl } = req.body;
+    validateSignupData(req);
 
-  if(!firstName || !email || !password || !photoUrl ) {
-    throw new Error("Please enter details in all required fields ")
-  }
-  if(password.length < 4) {
-    throw new Error("Your password must be more then 3 letters")
-  }
+    const { firstName, lastName, email, password, photoUrl, age } = req.body;
 
-  // Below line creating a INSTANCE of user model from the schema
-  const user = new User(req.body);
+    const hashedPassword = await bcrypt.hash(password, 10);
+    console.log("hashedPassword : ", hashedPassword);
+    // Below line creating a INSTANCE of user model from the schema
+    const user = new User({
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      password: hashedPassword,
+      age: age,
+      photoUrl: photoUrl,
+    });
     await user.save();
     res.send("User Created Sucessfully  :-)   ");
   } catch (error) {
-    res.status(400).send("User not created!! something went wrong : " + error.message);
+    res
+      .status(400)
+      .send("User not created!! something went wrong : " + error.message);
   }
 });
 
-app.get("/user", async (req, res) => {
-  const email = req.body.email;
-  // const user = await User.findById("67b5ebc4cb03b6b8d4678cd9").exec();
+app.post("/login", async (req, res) => {
   try {
+    const { email, password } = req.body;
+
     const user = await User.findOne({ email: email });
-    // const user = await User.find({ email: email });
+    if (!user) throw new Error("Invalid credentials");
+
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+
+    if (!isPasswordValid) throw new Error("Invalid credentials");
+    else {
+      const token = await jwt.sign({ _id: user._id }, "pavan");
+
+      console.log("jwt : ", token);
+
+      res.cookie("token", token);
+      res.send("User Logged in sucessfully");
+    }
+  } catch (error) {
+    res.status(400).send("something went wrong : " + error.message);
+  }
+});
+
+app.get("/user", userAuth, async (req, res) => {
+
+  const user = req.user;
+  try {
     if (user) {
       res.send(user);
     } else {
       res.status(404).send("User not found");
     }
   } catch (error) {
-    res.status(404).send("something went wrong");
+    res.status(404).send("something went wrong " + error.message);
   }
 });
 
