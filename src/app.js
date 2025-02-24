@@ -12,13 +12,22 @@ app.use(express.json());
 app.post("/signup", async (req, res) => {
   console.log("request body : ", req.body);
 
+  try {
+  const { firstName, lastName, email, password, age, photoUrl } = req.body;
+
+  if(!firstName || !email || !password || !photoUrl ) {
+    throw new Error("Please enter details in all required fields ")
+  }
+  if(password.length < 4) {
+    throw new Error("Your password must be more then 3 letters")
+  }
+
   // Below line creating a INSTANCE of user model from the schema
   const user = new User(req.body);
-  try {
     await user.save();
     res.send("User Created Sucessfully  :-)   ");
   } catch (error) {
-    res.status(400).send("User not created!! something feels offf");
+    res.status(400).send("User not created!! something went wrong : " + error.message);
   }
 });
 

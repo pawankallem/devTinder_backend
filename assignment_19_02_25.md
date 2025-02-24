@@ -60,6 +60,43 @@
  - API - update a user by ID
  - API - update the user with email ID
 
+ - ### Data Saitization & Schema Validations
+ - Explore schematype options from the documentation
+ - add required, unique, lowercase, min, minlength, trim
+ - add default
+ - Create a custom validate function for gender
+ - Improve the DB schema - Put all appropiate validations on each field in schema
+ - Add timestamps to the userSchema
+ - Add API level validation on Patch request and signup post api
+ - Data Sanitizing Add API validation for each field
+
+ <!-- ******************************************** -->
+ - Install validator
+ - Explore validator library function and Use validator funcs for password, email, photo URL.
+ - NEVER TRUST req.body
+
+ - ### Encypting Passwords
+ - Validate data in Signup API 
+ - Install bcrypt package
+ - Create PasswordHash using bcrypt.hash & save the user is encrypted password
+ - Create login API
+ - Compare passwords and throw errors if email or password is invalid
+
+ - ### Authentication, JWT & Cookies
+ - install cookie-parser
+ - just send a dummy cookie to user
+ - create GET /profile API and check if you get hte cooked back
+ - install jsonwebtoken
+ - In login API, after email and password validation, create a JWT token and send it to user Cookie.
+ - read the cookies inside your profile API and find the logged in user
+ - userAuth Middleware 
+ - Add the userAuth middleware in profile API and a new send ConnectionRequest API
+ - Set the expiry of JWT token and cookieds to 7 days
+ - Crate userSchema method to getJWT()
+ - Create userSchema method to comparepassword(passwordInputByUser)
+
+ 
+
 
 
 
