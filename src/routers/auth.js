@@ -5,7 +5,6 @@ const User = require("../Models/user");
 const router = express.Router();
 const { validateSignupData } = require("../helpers/validation");
 
-
 router.post("/signup", async (req, res) => {
   try {
     validateSignupData(req);
@@ -13,7 +12,6 @@ router.post("/signup", async (req, res) => {
     const { firstName, lastName, email, password, photoUrl, age } = req.body;
 
     const hashedPassword = await bcrypt.hash(password, 10);
-    console.log("hashedPassword : ", hashedPassword);
     // Below line creating a INSTANCE of user model from the schema
     const user = new User({
       firstName: firstName,
@@ -42,14 +40,11 @@ router.post("/login", async (req, res) => {
     // const isPasswordValid = await bcrypt.compare(password, user.password);
     const isPasswordValid = await user.compareAuthPasswords(password);
 
-    console.log("line 53");
 
     if (!isPasswordValid) throw new Error("Invalid credentials");
     else {
       const token = await user.getJwt();
       // const token = await jwt.sign({ _id: user._id }, "pavan", {expiresIn: '0h'});
-
-      console.log("jwt : ", token);
 
       res.cookie("token", token, { expires: new Date(Date.now() + 900000) });
       res.send("User Logged in sucessfully");
@@ -59,4 +54,10 @@ router.post("/login", async (req, res) => {
   }
 });
 
-module.exports = router
+router.post("/logout", async (req, res) => {
+  res
+    .cookie("token", null, { expires: new Date(Date.now()) })
+    .send("Logout Sucessfull");
+});
+
+module.exports = router;

@@ -13,6 +13,31 @@ const validateSignupData = (req) => {
   }
 };
 
+const validateProfileEditData = (req) => {
+  const allowedEditFields = ["firstName", "lastName", "email", "age"];
+
+  const isAllowed = Object.keys(req.body).every((e) =>
+    allowedEditFields.includes(e)
+  );
+
+  return isAllowed;
+};
+
+const validateForgotPasswordField = (req) => {
+  const allowedForgotPasswordFields = [
+    "currentPassword",
+    "newPassword",
+    "confirmPassword",
+  ];
+  const isUpdatePasswordAllowed = Object.keys(req.body).every((e) =>
+    allowedForgotPasswordFields.includes(e)
+  );
+
+  return isUpdatePasswordAllowed;
+};
+
 module.exports = {
   validateSignupData,
+  validateProfileEditData,
+  validateForgotPasswordField,
 };

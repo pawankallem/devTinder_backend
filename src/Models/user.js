@@ -77,7 +77,6 @@ userSchema.methods.getJwt = async function () {
 
 userSchema.methods.compareAuthPasswords = async function (inputPasswordByUser) {
 
-  console.log("helloooooooooooooooooo")
   const user = this;
   const passwordHash = user.password;
 
@@ -85,7 +84,6 @@ userSchema.methods.compareAuthPasswords = async function (inputPasswordByUser) {
     inputPasswordByUser,
     passwordHash
   );
-  console.log("validated password : ", isPasswordValid);
   return isPasswordValid;
 
   
