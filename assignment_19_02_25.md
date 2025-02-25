@@ -94,10 +94,18 @@
  - Crate userSchema method to getJWT()
  - Create userSchema method to comparepassword(passwordInputByUser)
 
+ <!-- ******************************************** -->
+  - ### Diving into the Apis and express Router
+  - Explore tinder APIs
+  - Create a list all API you can think of in Dev Tinder
+  - Group multiple routes under respective routes
+  - Create routes folder for managing auth, profile, request routerse
+  - Create authRouter, profileRouter, requestRouter
+  - Import these routers in app.
+
  
 
 
- <!-- ******************************************** -->
 
 
 
