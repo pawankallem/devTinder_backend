@@ -19,6 +19,8 @@
  - POST /request/review/accepted/:requestId
  - POST /request/review/rejected/:requestId
 
+ - above 1 we can make to /request/review/:status/:requestId
+
  # userRouter
  - GET /user/connections
  - GET /user/requests

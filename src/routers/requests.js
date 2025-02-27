@@ -9,10 +9,6 @@ router.post("/request/send/:status/:toUserId", userAuth, async (req, res) => {
     const status = req.params.status;
     const toUserId = req.params.toUserId;
     const fromUserId = req.user._id;
-    // if (fromUserId.equal(toUserId))
-    //   return res
-    //     .status(400)
-    //     .json({ message: "Self Connection Request not acceptable" });
 
     const AcceptableStatus = ["interested", "ignored"];
     if (!AcceptableStatus.includes(status))
@@ -50,5 +46,38 @@ router.post("/request/send/:status/:toUserId", userAuth, async (req, res) => {
     res.status(400).json({ message: `Error : ${error.message}` });
   }
 });
+
+router.post(
+  "/request/review/:status/:requestId",
+  userAuth,
+  async (req, res) => {
+    try {
+      const { status, requestId } = req.params;
+      const user = req.user;
+
+      const allowedStatus = ["accepted", "rejected"];
+      if (!allowedStatus.includes(status))
+        return res
+          .status(400)
+          .json({ message: `Invalid Status type : ${status}` });
+
+      const connectionRequest = await ConnectionRequest.findOne({
+        _id: requestId,
+        toUserId: user._id,
+        status: "interested",
+      });
+
+      if (!connectionRequest)
+        return res.status(404).json({ message: "Invalid Request" });
+
+      connectionRequest.status = status;
+      const data = await connectionRequest.save();
+
+      res.json({ message: `Connection Request ${status}`, data });
+    } catch (error) {
+      res.status(400).json({ message: `Error : ${error}` });
+    }
+  }
+);
 
 module.exports = router;
