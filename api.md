@@ -22,8 +22,8 @@
  - above 1 we can make to /request/review/:status/:requestId
 
  # userRouter
+ - GET /user/requests/received
  - GET /user/connections
- - GET /user/requests
  - GET /user/feed 
 
 

@@ -128,6 +128,9 @@
  <!-- ******************************************** -->
   - ### Ref, Populate & Thought process of writing Apis
   - write code for this API "/request/review/:status/:requestId" and make proper validations
+  - Thougt rpocess - POST vs GET
+  - Read about ref and populate in mongodb
+  - Create GET /user/requests/received with all the checks
 
 
 
