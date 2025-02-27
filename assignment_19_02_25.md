@@ -125,13 +125,19 @@
 
 
 
- <!-- ******************************************** -->
   - ### Ref, Populate & Thought process of writing Apis
   - write code for this API "/request/review/:status/:requestId" and make proper validations
   - Thougt rpocess - POST vs GET
   - Read about ref and populate in mongodb
   - Create GET /user/requests/received with all the checks
   - Create GET /user/connections with all the checks
+
+  - ### Building Feed API & Pagination
+ <!-- ******************************************** -->
+  - Logic for GET /fee API
+  - Explore the $nin, $and, $ne and other query operators
+
+  
 
 
 
