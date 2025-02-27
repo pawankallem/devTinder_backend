@@ -12,6 +12,10 @@
  # requestRouter
  - POST /request/send/interested/:userId
  - POST /request/send/ignore/:userId
+
+ - above 1 we can make to /request/send/:status/:userId
+
+
  - POST /request/review/accepted/:requestId
  - POST /request/review/rejected/:requestId
 
