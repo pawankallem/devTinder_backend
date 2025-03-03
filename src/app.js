@@ -6,24 +6,31 @@ const { validateSignupData } = require("./helpers/validation");
 const bcrypt = require("bcrypt");
 const cookieParser = require("cookie-parser");
 const jwt = require("jsonwebtoken");
+const cors = require("cors");
 
-const authRouter = require("./routers/auth")
-const profileRouter = require("./routers/profile")
-const requestRouter = require("./routers/requests")
-const userRouter = require("./routers/user")
+const authRouter = require("./routers/auth");
+const profileRouter = require("./routers/profile");
+const requestRouter = require("./routers/requests");
+const userRouter = require("./routers/user");
 
 const app = express();
 const PORT = 5005;
 
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+  })
+  // cors()
+);
 // Middleware to READ the JSON data.
 app.use(express.json());
 app.use(cookieParser());
 
-app.use("/", authRouter)
-app.use("/", profileRouter)
-app.use("/", requestRouter)
-app.use("/", userRouter)
-
+app.use("/", authRouter);
+app.use("/", profileRouter);
+app.use("/", requestRouter);
+app.use("/", userRouter);
 
 // Wild card error handling
 app.use("/", (err, req, res, next) => {
