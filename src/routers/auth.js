@@ -40,14 +40,14 @@ router.post("/login", async (req, res) => {
     // const isPasswordValid = await bcrypt.compare(password, user.password);
     const isPasswordValid = await user.compareAuthPasswords(password);
 
-
     if (!isPasswordValid) throw new Error("Invalid credentials");
     else {
       const token = await user.getJwt();
       // const token = await jwt.sign({ _id: user._id }, "pavan", {expiresIn: '0h'});
 
       res.cookie("token", token, { expires: new Date(Date.now() + 900000) });
-      res.send("User Logged in sucessfully");
+      res.json({ message: "User Loggedin Sucessfully", data: user });
+      // res.send("User Logged in sucessfully");
     }
   } catch (error) {
     res.status(400).send("something went wrong : " + error.message);
