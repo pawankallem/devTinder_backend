@@ -11,7 +11,6 @@ const router = express.Router();
 
 router.get("/profile/view", userAuth, async (req, res) => {
   try {
-    console.log("11111111111111111 : ", req.user);
     const loggedInUser = req.user;
 
     res.send(loggedInUser);
