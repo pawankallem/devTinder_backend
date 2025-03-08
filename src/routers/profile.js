@@ -33,7 +33,10 @@ router.patch("/profile/edit", userAuth, async (req, res) => {
       data: loggedInUser,
     });
   } catch (error) {
-    res.status(400).send("Error : ", error);
+    res.status(400).json({
+      message: `update failed!`,
+      error: error,
+    });
   }
 });
 

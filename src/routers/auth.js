@@ -9,7 +9,8 @@ router.post("/signup", async (req, res) => {
   try {
     validateSignupData(req);
 
-    const { firstName, lastName, email, password, photoUrl, age } = req.body;
+    const { firstName, lastName, email, password, photoUrl, age, bio } =
+      req.body;
 
     const hashedPassword = await bcrypt.hash(password, 10);
     // Below line creating a INSTANCE of user model from the schema
@@ -20,9 +21,14 @@ router.post("/signup", async (req, res) => {
       password: hashedPassword,
       age: age,
       photoUrl: photoUrl,
+      bio: bio,
     });
-    await user.save();
-    res.send("User Created Sucessfully  :-)   ");
+    const savedUser = await user.save();
+
+    const token = await user.getJwt();
+    res.cookie("token", token, { expires: new Date(Date.now() + 900000) });
+
+    res.json({ message: "User Created Sucessfully :-) ", data: savedUser });
   } catch (error) {
     res
       .status(400)

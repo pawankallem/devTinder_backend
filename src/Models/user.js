@@ -54,12 +54,16 @@ const userSchema = new Schema(
     },
     photoUrl: {
       type: String,
-      required: true,
       validate(inputPhotoUrl) {
         if (!inputPhotoUrl) {
           throw new Error("Please enter Profile URL");
         }
       },
+      default: "https://s3.amazonaws.com/37assets/svn/765-default-avatar.png",
+    },
+    bio: {
+      type: String,
+      default: "This is default Bio of User",
     },
   },
   {
@@ -76,7 +80,6 @@ userSchema.methods.getJwt = async function () {
 };
 
 userSchema.methods.compareAuthPasswords = async function (inputPasswordByUser) {
-
   const user = this;
   const passwordHash = user.password;
 
@@ -85,8 +88,6 @@ userSchema.methods.compareAuthPasswords = async function (inputPasswordByUser) {
     passwordHash
   );
   return isPasswordValid;
-
-  
 };
 
 // always start with Capital letter while defining Model

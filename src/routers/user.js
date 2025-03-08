@@ -5,7 +5,7 @@ const ConnectionRequest = require("../Models/connectionRequest");
 
 const router = express.Router();
 
-const safeData = ["firstName", "lastName"];
+const safeData = ["firstName", "lastName", "age", "gender", "photoUrl", "bio"];
 
 router.get("/user/requests/received", userAuth, async (req, res) => {
   try {
@@ -77,7 +77,7 @@ router.get("/feed", userAuth, async (req, res) => {
         { _id: { $ne: user._id } },
       ],
     })
-      .select("firstName lastName")
+      .select("firstName lastName age gender photoUrl")
       .skip(skip)
       .limit(limit);
 
