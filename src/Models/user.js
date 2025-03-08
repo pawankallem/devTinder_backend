@@ -54,12 +54,12 @@ const userSchema = new Schema(
     },
     photoUrl: {
       type: String,
-      required: true,
       validate(inputPhotoUrl) {
         if (!inputPhotoUrl) {
           throw new Error("Please enter Profile URL");
         }
       },
+      default: "https://s3.amazonaws.com/37assets/svn/765-default-avatar.png",
     },
     bio: {
       type: String,
