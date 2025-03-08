@@ -11,6 +11,7 @@ const router = express.Router();
 
 router.get("/profile/view", userAuth, async (req, res) => {
   try {
+    console.log("11111111111111111 : ", req.user);
     const loggedInUser = req.user;
 
     res.send(loggedInUser);
@@ -33,7 +34,10 @@ router.patch("/profile/edit", userAuth, async (req, res) => {
       data: loggedInUser,
     });
   } catch (error) {
-    res.status(400).send("Error : ", error);
+    res.status(400).json({
+      message: `update failed!`,
+      error: error,
+    });
   }
 });
 

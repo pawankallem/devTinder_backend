@@ -61,6 +61,10 @@ const userSchema = new Schema(
         }
       },
     },
+    bio: {
+      type: String,
+      default: "This is default Bio of User",
+    },
   },
   {
     timestamps: true,
@@ -76,7 +80,6 @@ userSchema.methods.getJwt = async function () {
 };
 
 userSchema.methods.compareAuthPasswords = async function (inputPasswordByUser) {
-
   const user = this;
   const passwordHash = user.password;
 
@@ -85,8 +88,6 @@ userSchema.methods.compareAuthPasswords = async function (inputPasswordByUser) {
     passwordHash
   );
   return isPasswordValid;
-
-  
 };
 
 // always start with Capital letter while defining Model

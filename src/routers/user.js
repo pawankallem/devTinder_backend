@@ -77,7 +77,7 @@ router.get("/feed", userAuth, async (req, res) => {
         { _id: { $ne: user._id } },
       ],
     })
-      .select("firstName lastName")
+      .select("firstName lastName age gender photoUrl")
       .skip(skip)
       .limit(limit);
 
