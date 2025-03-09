@@ -1,31 +1,32 @@
+# authRouter
 
- # authRouter
- - POST /signup
- - POST /login
- - POST /logout
+- POST /signup
+- POST /login
+- POST /logout
 
- # profileRouter
- - GET /profile/view
- - PATCH /profile/edit
- - PATCH /profile/password
+# profileRouter
 
- # requestRouter
- - POST /request/send/interested/:userId
- - POST /request/send/ignore/:userId
+- GET /profile/view
+- PATCH /profile/edit
+- PATCH /profile/password
 
- - above 1 we can make to /request/send/:status/:userId
+# requestRouter
 
+- POST /request/send/interested/:userId
+- POST /request/send/ignore/:userId
 
- - POST /request/review/accepted/:requestId
- - POST /request/review/rejected/:requestId
+- above 1 we can make to /request/send/:status/:userId
 
- - above 1 we can make to /request/review/:status/:requestId
+- POST /request/review/accepted/:requestId
+- POST /request/review/rejected/:requestId
 
- # userRouter
- - GET /user/requests/received
- - GET /user/connections
- - GET /feed 
+- above 1 we can make to /request/review/:status/:requestId
 
+# userRouter
 
- - Status :- [ignore,interested,accepted,rejected]
- - 
+- GET /user/requests/received
+- GET /user/connections
+- GET /feed
+
+- Status :- [ignore,interested,accepted,rejected]
+-
