@@ -14,7 +14,7 @@
 
 # Uses :
 
-API design for sign in Login, Signup, User Feed, Connection Requests, Current Connectioins, Logout
+We can sign in Login, Signup, User Feed, Connection Requests, Current Connectioins, Logout
 
 # Pages Build
 
@@ -24,23 +24,33 @@ API design for sign in Login, Signup, User Feed, Connection Requests, Current Co
 
 <br>
 
-Login:
-
-![Screenshot 2025-03-10 183750](https://github.com/user-attachments/assets/71056a30-e9de-4fca-a7ad-344a5a8443bc)
-
-Signup :
-
-![Screenshot 2025-03-10 183737](https://github.com/user-attachments/assets/1d334430-701e-41ae-9c42-34e5868f0233)
-
 # Funtionallity Added
 
 <br>
 
 - Signup
+
+![Screenshot 2025-03-11 003817](https://github.com/user-attachments/assets/5d19d7e4-d276-4d69-a281-5e570ea53ca2)
+
+- Edit Profile
+
+![Screenshot 2025-03-11 004006](https://github.com/user-attachments/assets/50998bdf-5f82-4303-a014-79a14eb62c89)
+
 - Login
+  ![Screenshot 2025-03-11 004102](https://github.com/user-attachments/assets/43f1dd73-486d-4325-aa98-d6e33ef98018)
+
 - Users Feed
+
+![Screenshot 2025-03-11 004034](https://github.com/user-attachments/assets/20281deb-1b95-4785-bc3d-a0589f9e7ea4)
+
 - Connection Requests Recieved
+
+![Screenshot 2025-03-11 004243](https://github.com/user-attachments/assets/2186c505-577b-48ed-80cd-b0734b4dca86)
+
 - Connection list
+
+![Screenshot 2025-03-11 004228](https://github.com/user-attachments/assets/c35c417b-18fb-49c4-aa69-491ac035634a)
+
 - Logout
 - Routing and Authentication
 
