@@ -14,9 +14,8 @@ const adminAuth = (req, res, next) => {
 const userAuth = async (req, res, next) => {
   try {
     const { token } = req.cookies;
-    console.log("token in middleware : ", token);
     if (!token) return res.status(401).send("Please Login");
-    const decodedData = await jwt.verify(token, "pavan");
+    const decodedData = await jwt.verify(token, process.env.SECRET_KEY);
     if (!decodedData) return res.status(401).send("Please Login");
 
     const user = await User.findById(decodedData._id);

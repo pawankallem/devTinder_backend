@@ -31,7 +31,6 @@ const userSchema = new Schema(
           throw new Error("Please enter valid Email");
         }
       },
-      // match: "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$",
     },
     password: {
       type: String,
@@ -74,7 +73,9 @@ const userSchema = new Schema(
 userSchema.methods.getJwt = async function () {
   const user = this;
 
-  const token = await jwt.sign({ _id: user._id }, "pavan", { expiresIn: "1h" });
+  const token = await jwt.sign({ _id: user._id }, process.env.SECRET_KEY, {
+    expiresIn: "1h",
+  });
 
   return token;
 };
